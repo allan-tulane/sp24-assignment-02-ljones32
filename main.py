@@ -49,7 +49,7 @@ def subquadratic_multiply(x, y):
   xvec = x.binary_vec
   yvec = y.binary_vec
   xvec, yvec = pad(xvec, yvec)
-  if decimal.val <= 1 and y.decimal.val <= 1:
+  if x.decimal_val <= 1 and y.decimal_val <= 1:
     return BinaryNumber(x.decimal_val * y.decimal_val)
   x_l, x_r = split_number(xvec)
   y_l, y_r = split_number(yvec)
@@ -57,7 +57,7 @@ def subquadratic_multiply(x, y):
   z_1 = subquadratic_multiply(x_r, y_r)
   xsum = BinaryNumber(x_l.decimal_val + x_r.decimal_val)
   ysum = BinaryNumber(y_l.decimal_val + y_r.decimal_val)
-  m = BinaryNumber(_subquadratic_multiply(xsum, ysum).decimal_val - z_0.decimal_val - z_1.decimal_val)
+  m = BinaryNumber(subquadratic_multiply(xsum, ysum).decimal_val - z_0.decimal_val - z_1.decimal_val)
   m = bit_shift(m, len(xvec)//2)
   z_0 = bit_shift(z_0, len(xvec))
   k = BinaryNumber(z_0.decimal_val + z_1.decimal_val + m.decimal_val)
